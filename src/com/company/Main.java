@@ -11,14 +11,18 @@ public class Main {
 
         while (true){
             try {
-               bankAccount.WithDraw(6000);
                 System.out.println("Вы сняли со счета деньги. Ваш текущий счет - " + bankAccount.getAmount());
+                bankAccount.WithDraw(6000);
             } catch (LimitException limitException) {
                 System.out.println(limitException.getMessage());
                 System.out.println("Ваш текущий счет - " + bankAccount.Amount);
                 System.out.println("Мы сняли и всю ту оставшуюся сумму с вашего счета в размере - " + bankAccount.Amount + " сом");
-                double счет = bankAccount.Amount- bankAccount.getAmount();
-                System.out.println("Ваш текущий счет - " + счет);
+                try {
+                    bankAccount.WithDraw(bankAccount.Amount);
+                    System.out.println(bankAccount.Amount);
+                } catch (LimitException e) {
+                    System.out.println("ABOBA");
+                }
                 break;
             }
         }

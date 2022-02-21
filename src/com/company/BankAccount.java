@@ -12,9 +12,10 @@ public class BankAccount {
     }
 
     public void WithDraw(double sum) throws LimitException {
-        Amount = Amount - sum;
         if (sum > Amount){
-           throw new LimitException("У вас не достаточно средств ", getAmount() );
+            throw new LimitException("У вас не достаточно средств ", getAmount() );
+        } else {
+            Amount = Amount - sum;
         }
     }
 
